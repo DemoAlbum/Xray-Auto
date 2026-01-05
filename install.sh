@@ -6,7 +6,7 @@
 # License: MIT License
 # Version: v0.6.1 (TimeFirst)
 # Description: VLESS + Reality + Vision + Intelligent SNI + Docker Compatible
-# Update: 将时间同步前置到apt之前，解决因时间错误导致源更新失败的问题
+# Update: v0.6.1
 # ==============================================================
 
 # --- [Config] 全局环境配置 ---
