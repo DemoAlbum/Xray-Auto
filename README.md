@@ -30,16 +30,17 @@
 * **权限**: 需要 Root 权限
 
 ### 🚀 快速安装
-
-```bash
+```
 bash <(curl -sL https://raw.githubusercontent.com/accforeve/Xray-Auto/main/install.sh)
+
 ```
 
 ### 🗑️ 卸载 / Uninstall
 如果你想移除 Xray 及其相关配置：
 
-```bash
+```
 bash <(curl -sL [https://raw.githubusercontent.com/accforeve/Xray-Auto/main/remove.sh](https://raw.githubusercontent.com/accforeve/Xray-Auto/main/remove.sh))
+
 ```
 
 ### 常用指令
@@ -75,15 +76,17 @@ An advanced, fully automated deployment script for Xray, featuring VLESS + Reali
 ### 🚀 Installation
 Replace YourUsername and YourRepo with your actual GitHub username and repository name:
 
-```bash
+```
 bash <(curl -sL https://raw.githubusercontent.com/accforeve/Xray-Auto/main/install.sh)
+
 ```
 
 ### 🗑️ Uninstall
 To remove Xray and its associated configurations:
 
-```bash
+```
 bash <(curl -sL [https://raw.githubusercontent.com/accforeve/Xray-Auto/main/remove.sh](https://raw.githubusercontent.com/accforeve/Xray-Auto/main/remove.sh))
+
 ```
 
 ### 🛠 Management
