@@ -49,28 +49,22 @@ wget -N [https://raw.githubusercontent.com/accforeve/Xray-Auto/main/install.sh](
 ### 🔄 流量模式切换 (Mode Switch)
 控制是否允许流量访问中国大陆 IP（防误连回国，或按需开启）。
 # 查看当前模式状态
-```bash
 mode
 
 # 切换模式 [阻断回国] <-> [允许回国]
-```bash
 mode c
 
 # 🗑️ 卸载脚本 (Uninstall)
 彻底清除 Xray 服务、配置文件、计划任务及相关防火墙规则。
-```bash
 xray-uninstall
 
 # 查看 Xray 运行状态
-```bash
 systemctl status xray
 
 # 重启 Xray 服务
-```bash
 systemctl restart xray
 
 # 查看实时日志
-```bash
 journalctl -u xray -f
 
 ## 📝 配置说明 | Configuration Details
