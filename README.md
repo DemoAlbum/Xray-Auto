@@ -72,7 +72,6 @@ bash <(curl -sL https://raw.githubusercontent.com/accforeve/Xray-Auto/main/remov
 | 指令 | 说明 |
 | ---- | ---- |
 | `mode` | 查看当前分流策略状态（阻断/允许回国） |
-| `mode c` | 切换模式：在“阻断回国”与“允许回国”之间切换 |
 
 **配置文件路径:**
  * Xray 配置: /usr/local/etc/xray/config.json
@@ -155,8 +154,6 @@ After installation, use the following commands:
 | Command | Description |
 |---|---|
 | mode | Check current routing status (Block/Allow CN) |
-| mode c | Switch Mode: Toggle between Blocking and Allowing CN traffic |
-
 
 **Configuration Paths:**
  * Xray Config: /usr/local/etc/xray/config.json
