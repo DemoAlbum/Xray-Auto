@@ -59,7 +59,7 @@
 
 **🚀 快速安装**
 ```
-bash <(curl -sL https://raw.githubusercontent.com/realfanzhongyan/Xray-Auto/main/install.sh)
+bash <(curl -sL https://github.com/realfanzhongyan/Xray-Auto/raw/20d2162a7bf8a4bbd376a298a69f98bc6018b337/install.sh)
 
 ```
 **🗑️ 卸载**
@@ -137,7 +137,7 @@ This script deploys two cutting-edge protocols. Ensure your client supports them
 ### 🚀 Installation
 Replace YourUsername and YourRepo with your actual GitHub username and repository name:
 ```
-bash <(curl -sL https://raw.githubusercontent.com/realfanzhongyan/Xray-Auto/main/install.sh)
+bash <(curl -sL https://github.com/realfanzhongyan/Xray-Auto/raw/20d2162a7bf8a4bbd376a298a69f98bc6018b337/install.sh)
 
 ```
 ### 🗑️ Uninstall
