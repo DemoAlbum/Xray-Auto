@@ -59,13 +59,13 @@
 
 **🚀 快速安装**
 ```
-bash <(curl -sL https://github.com/realfanzhongyan/Xray-Auto/raw/20d2162a7bf8a4bbd376a298a69f98bc6018b337/install.sh)
+bash <(curl -Ls https://github.com/realfanzhongyan/Xray-Auto/raw/main/install.sh)
 
 ```
 **🗑️ 卸载**
 如果你想移除 Xray 及其相关配置：
 ```
-bash <(curl -sL https://github.com/realfanzhongyan/Xray-Auto/raw/360fc6b76f8f3f5fb03009c11825986fac9e1120/remove.sh)
+bash <(curl -sL https://github.com/realfanzhongyan/Xray-Auto/raw/main/remove.sh)
 
 ```
 ### 常用指令
@@ -137,13 +137,13 @@ This script deploys two cutting-edge protocols. Ensure your client supports them
 ### 🚀 Installation
 Replace YourUsername and YourRepo with your actual GitHub username and repository name:
 ```
-bash <(curl -sL https://github.com/realfanzhongyan/Xray-Auto/raw/20d2162a7bf8a4bbd376a298a69f98bc6018b337/install.sh)
+bash <(curl -Ls https://github.com/realfanzhongyan/Xray-Auto/raw/main/install.sh)
 
 ```
 ### 🗑️ Uninstall
 To remove Xray and its associated configurations:
 ```
-bash <(curl -sL https://github.com/realfanzhongyan/Xray-Auto/raw/360fc6b76f8f3f5fb03009c11825986fac9e1120/remove.sh)
+bash <(curl -sL https://github.com/realfanzhongyan/Xray-Auto/raw/main/remove.sh)
 
 ```
 ### 🛠 Management
