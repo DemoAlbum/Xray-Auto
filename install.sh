@@ -1,6 +1,6 @@
 #!/bin/bash
 # ==============================================================
-# Project: Xray-Auto
+# Project: Xray-Auto Installer
 # Author: ISFZY
 # Repository: https://github.com/ISFZY/Xray-Auto
 # Version: v0.3 VLESS+reality-Vision/xhttp
