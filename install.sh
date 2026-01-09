@@ -256,28 +256,77 @@ if [ "$(free -m | grep Mem | awk '{print $2}')" -lt 2048 ] && [ "$(swapon --show
 fi
 echo -e "${GREEN} 完成 ${PLAIN}"
 
+# --- 3. 智能 SNI 优选 ---
 echo -e "\n${BLUE}--- 🔍 智能 SNI 伪装域优选 ---${PLAIN}"
 DOMAINS=("www.icloud.com" "www.apple.com" "itunes.apple.com" "learn.microsoft.com" "www.bing.com" "www.tesla.com")
-BEST_MS=9999; BEST_INDEX=0
+BEST_MS=9999; BEST_INDEX=1
+
+# 1. 输出表头
 printf "${BG_GREEN} %-4s %-25s %-12s ${PLAIN}\n" "ID" "Domain" "Latency"
+
+# 2. 循环测试延迟
 for i in "${!DOMAINS[@]}"; do
     domain="${DOMAINS[$i]}"
+    # 显示序号 (从1开始)
+    display_index=$((i+1))
+    
     time_cost=$(LC_NUMERIC=C curl $CURL_OPT -w "%{time_connect}" -o /dev/null -s --connect-timeout 2 "https://$domain")
     if [ -n "$time_cost" ] && [ "$time_cost" != "0.000" ]; then
         ms=$(LC_NUMERIC=C awk -v t="$time_cost" 'BEGIN { printf "%.0f", t * 1000 }')
         color=$GREEN
         if [ "$ms" -gt 200 ]; then color=$YELLOW; fi
-        if [ "$ms" -lt "$BEST_MS" ]; then BEST_MS=$ms; BEST_INDEX=$((i+1)); fi
-        printf " %-4s %-25s ${color}%-8s${PLAIN}\n" "$((i+1))" "$domain" "${ms}ms"
+        # 记录最佳
+        if [ "$ms" -lt "$BEST_MS" ]; then BEST_MS=$ms; BEST_INDEX=$display_index; fi
+        printf " %-4s %-25s ${color}%-8s${PLAIN}\n" "$display_index" "$domain" "${ms}ms"
     else
-        printf " %-4s %-25s ${RED}%-8s${PLAIN}\n" "$((i+1))" "$domain" "Timeout"
+        printf " %-4s %-25s ${RED}%-8s${PLAIN}\n" "$display_index" "$domain" "Timeout"
     fi
 done
-DEFAULT_SNI=${DOMAINS[$((BEST_INDEX-1))]}
+
+# 3. 显示选项 0 (自定义)
+printf " %-4s %-25s ${BLUE}%-8s${PLAIN}\n" "0" "自定义输入 (Custom)" "-"
 echo -e "----------------------------------------------"
-if wait_with_countdown 9 "优选 SNI [${DEFAULT_SNI}]"; then SNI_HOST="$DEFAULT_SNI"; else
-    read -p "   请输入自定义 SNI: " SNI_IN; SNI_HOST="${SNI_IN:-$DEFAULT_SNI}"; fi
-echo -e "   ✅ 已选: ${YELLOW}${SNI_HOST}${PLAIN}"
+
+# 获取最佳域名
+DEFAULT_SNI=${DOMAINS[$((BEST_INDEX-1))]}
+
+# 4. 交互选择
+# 逻辑：10秒倒计时，不输入则使用默认；输入数字则选中对应项
+echo -ne "${GREEN}👉 请选择 SNI ID [0-6] ${PLAIN}(默认: ${YELLOW}${BEST_INDEX}. ${DEFAULT_SNI}${PLAIN}): "
+read -t 10 -p "" SELECTION || SELECTION=""
+echo "" # 换行
+
+# 5. 处理选择结果
+if [[ -z "$SELECTION" ]]; then
+    # 情况A: 超时或直接回车 -> 使用最佳推荐
+    SNI_HOST="$DEFAULT_SNI"
+    echo -e "⏩ 使用推荐配置: ${GREEN}${SNI_HOST}${PLAIN}"
+
+elif [[ "$SELECTION" == "0" ]]; then
+    # 情况B: 用户选了 0 -> 进入自定义模式 (带校验)
+    while true; do
+        read -p "⌨️  请输入自定义 SNI 域名: " CUSTOM_INPUT
+        # 校验逻辑: 必须包含点(.), 只能包含字母数字横杠
+        if [[ "$CUSTOM_INPUT" =~ ^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$ ]]; then
+            SNI_HOST="$CUSTOM_INPUT"
+            break
+        else
+            echo -e "${RED}❌ 格式错误！请输入有效的域名 (例如: www.google.com)${PLAIN}"
+        fi
+    done
+
+elif [[ "$SELECTION" =~ ^[1-6]$ ]]; then
+    # 情况C: 用户输入 1-6 -> 从列表中映射
+    SNI_HOST=${DOMAINS[$((SELECTION-1))]}
+    echo -e "👉 您选择了: ${GREEN}${SNI_HOST}${PLAIN}"
+
+else
+    # 情况D: 乱输 -> 强制使用默认
+    SNI_HOST="$DEFAULT_SNI"
+    echo -e "${YELLOW}⚠️  输入无效，自动使用推荐: ${GREEN}${SNI_HOST}${PLAIN}"
+fi
+
+echo -e "✅ 最终 SNI: ${YELLOW}${SNI_HOST}${PLAIN}"
 
 XRAY_BIN="/usr/local/bin/xray"
 UUID=$($XRAY_BIN uuid)
