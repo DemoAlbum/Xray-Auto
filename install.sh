@@ -579,8 +579,8 @@ systemctl enable xray >/dev/null 2>&1
 if systemctl restart xray; then
     bash /usr/local/bin/info
     echo -e "\n🎉 安装全部完成！"
-else
     echo -e "💡 常用命令: ${YELLOW}info${PLAIN} (查看信息) | ${YELLOW}mode${PLAIN} (切换流控) | ${YELLOW}net${PLAIN} (切换网络)"
+else
     echo -e "${RED}${ICON_ERR} Xray 服务启动失败！${PLAIN}"
     echo -e "请运行: systemctl status xray 查看错误日志"
     exit 1
