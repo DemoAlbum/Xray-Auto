@@ -1693,7 +1693,12 @@ set_swappiness() {
     echo -e "说明: 值越小(0-10)，越倾向于使用物理内存(速度快)。"
     echo -e "      值越大(60-100)，越倾向于使用硬盘交换(适合内存极小的情况)。"
     echo -e "------------------------------------------------"
-    read -p "请输入新的值 [0-100] (建议 10): " new_val
+    
+    # 默认值是 60
+    read -p "请输入新的值 [0-100] (默认: 60): " new_val
+
+    # 核心逻辑：若直接回车(变量为空)，则赋值为 60
+    [ -z "$new_val" ] && new_val=60
 
     if [[ ! "$new_val" =~ ^[0-9]+$ ]] || [ "$new_val" -lt 0 ] || [ "$new_val" -gt 100 ]; then
         echo -e "${RED}输入错误，请输入 0-100 之间的数字。${PLAIN}"
@@ -1874,14 +1879,13 @@ check_xray_outbound() {
     if jq -e '.outbounds[] | select(.tag=="warp_proxy")' "$CONFIG_FILE" >/dev/null; then return 0; else return 1; fi
 }
 
-# [UI优化] 状态显示改为统一宽度，方便对齐
 check_rule_ui() {
     local site=$1 
     if jq -e --arg site "$site" '.routing.rules[] | select(.outboundTag=="warp_proxy" and (.domain | index($site)))' "$CONFIG_FILE" >/dev/null; then
-        # 绿色，带对勾
+        # 绿色
         echo -e "${GREEN}WARP 托管${PLAIN}"
     else
-        # 黄色，带叉或直连符号
+        # 黄色，或直连符号
         echo -e "${YELLOW}默认直连${PLAIN}"
     fi
 }
