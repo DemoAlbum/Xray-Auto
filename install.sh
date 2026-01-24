@@ -737,7 +737,7 @@ fi
 cat > /usr/local/etc/xray/config.json <<EOF
 {
   "log": { "loglevel": "warning" },
-  "dns": { "servers": [ "1.1.1.1", "8.8.8.8", "localhost" ] },
+  "dns": { "servers": [ "localhost" ] },
   "inbounds": [
     {
       "tag": "vision_node", "port": ${PORT_VISION}, "protocol": "vless",
