@@ -16,7 +16,7 @@
 **Xray-Auto Installer** 是一个高度自动化、界面美观且功能强大的 Xray 部署脚本。基于 **VLESS-Reality** 协议，集成 **Vision** 和 **xhttp** 两种流控模式，完美适配 **IPv4 和 IPv6** 双栈环境。
 
 ### ✨ 核心特性
-* **⚡ 极致性能组合**: 默认部署 **VLESS-Reality**，无需域名和证书。同时开启 **TCP-Vision** (极速) 和 **xhttp** (高隐蔽) 双节点。
+* **⚡ 极致性能组合**: 默认部署 **VLESS-Reality**，无需域名和证书。同时开启 **TCP-Vision**  和 **xhttp**  双节点。
 * **🌐 智能双栈网络**: v0.4 新增环境自动检测。自动识别 IPv4 Only / IPv6 Only / 双栈环境，并调整路由策略，完美支持纯 IPv6 VPS。
 * **🎨 交互式 UI**: 拥有漂亮的 Banner、动态加载动画 (Spinner)、颜色高亮和倒计时交互，告别枯燥的安装过程。
 * **🔍 智能 SNI 优选**: 内置大厂域名列表，安装时自动测速，为你选择延迟最低的最佳伪装域名。
@@ -89,7 +89,7 @@ bash <(curl -sL https://github.com/ISFZY/Xray-Auto/raw/main/remove.sh)
 **Xray-Auto Installer** is a fully automated, lightweight, and high-performance script for deploying Xray. It integrates the latest **VLESS-Reality** protocol with **Vision** and **xhttp** flow control, optimized for both **IPv4 and IPv6** environments.
 
 ### ✨ Features
-* **⚡ Dual-Protocol Deployment**: Automatically deploys **VLESS-Reality** with **TCP-Vision** (Speed) and **xhttp** (Obfuscation) nodes.
+* **⚡ Dual-Protocol Deployment**: Automatically deploys **VLESS-Reality** with **TCP-Vision**  and **xhttp**  nodes.
 * **🌐 IPv4/IPv6 Dual-Stack**: Automatically detects network stack. Supports IPv4-only, IPv6-only, and Dual-stack servers perfectly.
 * **🎨 Interactive UI**: Beautiful CLI experience with loading spinners, color highlighting, and countdown interactions.
 * **🔍 Smart SNI Selection**: Tests latency to major domains (Microsoft, Apple, Tesla, etc.) and auto-selects the best camouflage domain.
